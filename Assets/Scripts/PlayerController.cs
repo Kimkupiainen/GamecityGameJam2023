@@ -3,6 +3,8 @@ using UnityEngine;
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField, Tooltip("0 for p1 1 for p2"),Range(0,1)]
+    int playernumber = 0;
     [SerializeField, Tooltip("Max speed, in units per second, that the character moves.")]
     float speed = 9;
 
@@ -35,37 +37,75 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-        float moveInput = Input.GetAxisRaw("Horizontal");
-
-        if (grounded)
+        if (playernumber == 0)
         {
-            velocity.y = 0;
+            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
+            float moveInput = Input.GetAxisRaw("Horizontal1");
 
-            if (Input.GetButtonDown("Jump"))
+            if (grounded)
             {
-                // Calculate the velocity required to achieve the target jump height.
-                velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                velocity.y = 0;
+
+                if (Input.GetButtonDown("Jump1"))
+                {
+                    // Calculate the velocity required to achieve the target jump height.
+                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                }
             }
+
+            float acceleration = grounded ? walkAcceleration : airAcceleration;
+            float deceleration = grounded ? groundDeceleration : 0;
+
+            if (moveInput != 0)
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            }
+            else
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            }
+
+            velocity.y += Physics2D.gravity.y * Time.deltaTime;
+
+            transform.Translate(velocity * Time.deltaTime);
+
+            grounded = false;
         }
-
-        float acceleration = grounded ? walkAcceleration : airAcceleration;
-        float deceleration = grounded ? groundDeceleration : 0;
-
-        if (moveInput != 0)
+        if (playernumber == 1)
         {
-            velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
+            float moveInput = Input.GetAxisRaw("Horizontal2");
+
+            if (grounded)
+            {
+                velocity.y = 0;
+
+                if (Input.GetButtonDown("Jump2"))
+                {
+                    // Calculate the velocity required to achieve the target jump height.
+                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                }
+            }
+
+            float acceleration = grounded ? walkAcceleration : airAcceleration;
+            float deceleration = grounded ? groundDeceleration : 0;
+
+            if (moveInput != 0)
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, speed * moveInput, acceleration * Time.deltaTime);
+            }
+            else
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
+            }
+
+            velocity.y += Physics2D.gravity.y * Time.deltaTime;
+
+            transform.Translate(velocity * Time.deltaTime);
+
+            grounded = false;
         }
-        else
-        {
-            velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
-        }
 
-        velocity.y += Physics2D.gravity.y * Time.deltaTime;
-
-        transform.Translate(velocity * Time.deltaTime);
-
-        grounded = false;
 
         // Retrieve all colliders we have intersected after velocity has been applied.
         Collider2D[] hits = Physics2D.OverlapBoxAll(transform.position, boxCollider.size, 0);
