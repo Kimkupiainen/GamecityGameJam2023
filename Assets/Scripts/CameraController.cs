@@ -11,7 +11,12 @@ public class CameraController : MonoBehaviour
     public float smoothtime = 0.5f;
     public float minzoom = 61.4f;
     public float maxzoom = 30f;
-
+    public float zoomlimiter = 50f;
+    private Camera cam;
+    private void Start()
+    {
+        cam = GetComponent<Camera>();
+    }
     void LateUpdate()
     {
         if (gameObjects.Count == 0)
@@ -29,7 +34,8 @@ public class CameraController : MonoBehaviour
     }
     void Zoomiers()
     {
-        float newZoom = Mathf.Lerp(maxzoom, minzoom, Getgreatestdistance()/50f);
+        float newZoom = Mathf.Lerp(maxzoom, minzoom, Getgreatestdistance()/zoomlimiter);
+        cam.fieldOfView = newZoom;
     }
     float Getgreatestdistance()
     {

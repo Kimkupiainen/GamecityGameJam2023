@@ -496,10 +496,11 @@ MonoBehaviour:
   - {fileID: 342521110}
   - {fileID: 652508623}
   - {fileID: 1734445970}
-  offset: {x: 0, y: 0, z: -33}
+  offset: {x: 0, y: 0, z: -39.87}
   smoothtime: 0.5
-  minzoom: 160
-  maxzoom: 44
+  minzoom: 61.4
+  maxzoom: 30
+  zoomlimiter: 50
 --- !u!1 &342521106
 GameObject:
   m_ObjectHideFlags: 0
@@ -569,11 +570,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playernumber: 0
-  speed: 9
+  speed: 28
   walkAcceleration: 75
-  airAcceleration: 30
+  airAcceleration: 99.89
   groundDeceleration: 70
-  jumpHeight: 4
+  jumpHeight: 10
 --- !u!70 &342521112
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -588,7 +589,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.024295807, y: 1.2644324}
-  m_Size: {x: 9.940636, y: 12.586219}
+  m_Size: {x: 13.19, y: 17.54}
   m_Direction: 0
 --- !u!4 &488064862 stripped
 Transform:
@@ -759,11 +760,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playernumber: 1
-  speed: 9
+  speed: 28
   walkAcceleration: 75
-  airAcceleration: 30
+  airAcceleration: 99.89
   groundDeceleration: 70
-  jumpHeight: 4
+  jumpHeight: 10
 --- !u!70 &652508621
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -778,7 +779,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.024295807, y: 1.2644324}
-  m_Size: {x: 9.940636, y: 12.586219}
+  m_Size: {x: 13.19, y: 17.54}
   m_Direction: 0
 --- !u!50 &652508622
 Rigidbody2D:
@@ -1532,7 +1533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
-  launchForce: 25
+  launchForce: 30.08
   velocityDamping: 0.95
   gravityScale: 1
 --- !u!4 &1835467975 stripped
