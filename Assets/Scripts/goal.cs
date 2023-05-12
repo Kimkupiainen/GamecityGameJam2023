@@ -23,7 +23,8 @@ public class goal : MonoBehaviour
 
     int score1;
     int score2;
-    int maxscore = 3;
+    int maxscore = 1;
+    bool gameover;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,7 @@ public class goal : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "ball")
+        if (collision.tag == "ball"&&!gameover)
         {
             if (this.name == "goal1")
             {
@@ -51,19 +52,34 @@ public class goal : MonoBehaviour
                 prt[1].Play();
             }
             BallMaxVelocity ball = collision.GetComponent<BallMaxVelocity>();
-            if (score1 == maxscore)
+            if (score1 == maxscore||score2==maxscore)
             {
-                cmr.DropExtras(1);
-                whowontext.text = "Player 1 wins!";
-                Destroy(ball);
+                gameover = true;
+                if (score1 > score2)
+                {
+                    cmr.DropExtras(1);
+                    whowontext.text = "Player 1 wins!";
+                    audience.ShakeLeft();
+                    Destroy(ball);
+                    score1text.text = null;
+                    score2text.text = null;
+
+                }
+                else
+                {
+                    cmr.DropExtras(2);
+                    audience.ShakeRight();
+                    whowontext.text = "Player 2 wins!";
+                    Destroy(ball);
+                    score1text.text = null;
+                    score2text.text = null;
+                }
+
             }
-            if (score2 == maxscore)
+            if (!gameover)
             {
-                cmr.DropExtras(2);
-                whowontext.text = "player 2 wins!";
-                Destroy(ball);
+                if (ball != null) StartCoroutine(ball.LaunchBall(1.5f));
             }
-            if (ball != null) StartCoroutine( ball.LaunchBall(1.5f));
         }
     }
 

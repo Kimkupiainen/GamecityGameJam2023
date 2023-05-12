@@ -51,6 +51,8 @@ public class CameraController : MonoBehaviour
     }
     public void DropExtras(int i)
     {
+        offset.y = 3;
+        maxzoom = 20;
         gameObjects.Remove(gameObjects[2]);
         if (i == 1)
         {
@@ -59,6 +61,7 @@ public class CameraController : MonoBehaviour
         if (i == 2)
         {
             gameObjects.Remove(gameObjects[0]);
+
         }
     }
     Vector3 Getcenterpoint()
