@@ -34,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
     private InputAction jump;
     private InputAction jump2;
+    [SerializeField] GameObject[] randomCharacter;
     
 
     /// <summary>
@@ -43,6 +44,11 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private void Start()
     {
+        for (int i=0; i < randomCharacter.Length; i++)
+        {
+            randomCharacter[i].SetActive(false);
+        }
+        randomCharacter[Random.Range(0, randomCharacter.Length)].SetActive(true);
         if (Gamepad.all.Count > 0)
         {
             currentpad1 = Gamepad.all.Count > 0 ? Gamepad.all[0] : null;
