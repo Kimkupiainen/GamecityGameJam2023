@@ -14,6 +14,9 @@ public class goal : MonoBehaviour
     TextMeshProUGUI score2text;
 
     [SerializeField]
+    TextMeshProUGUI whowontext;
+
+    [SerializeField]
     AudienceWiggler audience;
     [SerializeField]
     ParticleSystem[] prt;
@@ -26,6 +29,7 @@ public class goal : MonoBehaviour
     {
         score1 = 0;
         score2 = 0;
+        whowontext.text = null;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -50,10 +54,14 @@ public class goal : MonoBehaviour
             if (score1 == maxscore)
             {
                 cmr.DropExtras(1);
+                whowontext.text = "Player 1 wins!";
+                Destroy(ball);
             }
             if (score2 == maxscore)
             {
                 cmr.DropExtras(2);
+                whowontext.text = "player 2 wins!";
+                Destroy(ball);
             }
             if (ball != null) StartCoroutine( ball.LaunchBall(1.5f));
         }
