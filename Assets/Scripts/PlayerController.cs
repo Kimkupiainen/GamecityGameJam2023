@@ -67,16 +67,22 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         move = playerControls.Player.Move;
+        move2 = playerControls.Player.Move2;
         jump = playerControls.Player.Jump;
+        jump2 = playerControls.Player.Jump2;
         move.Enable();
+        move2.Enable();
         jump.Enable();
+        jump2.Enable();
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
         move.Disable();
+        move2.Disable();
         jump.Disable();
+        jump2.Disable();
     }
 
     private void Update()
@@ -90,6 +96,10 @@ public class PlayerController : MonoBehaviour
             if (currentpad1 != null)
             {
                 moveInput = currentpad1.leftStick.ReadValue().x;
+                if (currentpad1.aButton.IsPressed())
+                {
+                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                }
             }
             else
             {
@@ -126,23 +136,27 @@ public class PlayerController : MonoBehaviour
         }
         if (playernumber == 1)
         {
+            //Debug.Log(currentpad);
+            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
+            //float moveInput = Input.GetAxisRaw("Horizontal1");
             float moveInput;
             if (currentpad2 != null)
             {
                 moveInput = currentpad2.leftStick.ReadValue().x;
+                if (currentpad2.aButton.IsPressed())
+                {
+                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
+                }
             }
             else
             {
-                moveInput = move.ReadValue<Vector2>().x;
+                moveInput = move2.ReadValue<Vector2>().x;
             }
-            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            //float moveInput = Input.GetAxisRaw("Horizontal2");
 
             if (grounded)
             {
                 velocity.y = 0;
-
-                if (jump.IsPressed()||currentpad2.aButton.IsPressed())
+                if (jump2.IsPressed() || currentpad2.aButton.IsPressed())
                 {
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -160,7 +174,6 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
             }
-            
 
             velocity.y += Physics2D.gravity.y * Time.deltaTime;
 
