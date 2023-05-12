@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
             if (grounded)
             {
                 velocity.y = 0;
-                if (jump.IsPressed()||currentpad1.aButton.IsPressed())
+                if (jump.IsPressed()||(currentpad1!=null&&currentpad1.aButton.IsPressed()))
                 {
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
             if (grounded)
             {
                 velocity.y = 0;
-                if (jump2.IsPressed() || currentpad2.aButton.IsPressed())
+                if (jump2.IsPressed() || (currentpad2!=null&&currentpad2.aButton.IsPressed()))
                 {
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
