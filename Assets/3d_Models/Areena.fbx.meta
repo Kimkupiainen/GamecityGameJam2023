@@ -14,6 +14,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: CardboardSide
     second: {fileID: 2100000, guid: 41dcc2b976a25f04584dfe9795431b0f, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: CardboardSide
+    second: {fileID: 2800000, guid: 133ecc43529e60c4cb7418085ddb9405, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: Puu
+    second: {fileID: 2800000, guid: 6d1ab0f896dc4ec468f100449569d25f, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
