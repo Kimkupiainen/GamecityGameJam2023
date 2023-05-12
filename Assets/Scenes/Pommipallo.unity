@@ -1896,6 +1896,11 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1 &979045336 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6998854740268808730, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1012202566
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2178,6 +2183,11 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10, y: 3440649.5}
   m_EdgeRadius: 0
+--- !u!1 &1072788550 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017711107302820287, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1075180240
 GameObject:
   m_ObjectHideFlags: 0
@@ -2236,6 +2246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
   score2text: {fileID: 151939573}
+  audience: {fileID: 1226889605}
 --- !u!4 &1075180243
 Transform:
   m_ObjectHideFlags: 0
@@ -2249,7 +2260,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 23
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1098815742
 PrefabInstance:
@@ -2459,6 +2470,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
   score2text: {fileID: 151939573}
+  audience: {fileID: 1226889605}
 --- !u!4 &1122775410
 Transform:
   m_ObjectHideFlags: 0
@@ -2472,8 +2484,30 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 22
+  m_RootOrder: 24
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1226889603 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8070077950538367481, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1226889605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1226889603}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5465b2407348e5741bd8f775f603d55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 0.1
+  shakeDuration: 0.5
+  shakeSound: {fileID: 8300000, guid: bceb8981df0f44c4498aa5154683113a, type: 3}
+  leftSide: {fileID: 979045336}
+  rightSide: {fileID: 1072788550}
 --- !u!1 &1297339469
 GameObject:
   m_ObjectHideFlags: 0
@@ -6364,7 +6398,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 25.829, y: 0, z: 0}
 --- !u!1 &1734445965
 GameObject:
