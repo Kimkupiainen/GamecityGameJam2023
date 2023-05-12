@@ -49,7 +49,18 @@ public class CameraController : MonoBehaviour
         }
         return bounds.size.x;
     }
-
+    public void DropExtras(int i)
+    {
+        gameObjects.Remove(gameObjects[2]);
+        if (i == 1)
+        {
+            gameObjects.Remove(gameObjects[1]);
+        }
+        if (i == 2)
+        {
+            gameObjects.Remove(gameObjects[0]);
+        }
+    }
     Vector3 Getcenterpoint()
     {
         if (gameObjects.Count == 1)

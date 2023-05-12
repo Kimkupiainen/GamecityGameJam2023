@@ -2421,6 +2421,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
+  cmr: {fileID: 310762312}
   score2text: {fileID: 151939573}
   audience: {fileID: 1226889605}
   prt:
@@ -2649,6 +2650,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
+  cmr: {fileID: 310762312}
   score2text: {fileID: 151939573}
   audience: {fileID: 1226889605}
   prt:

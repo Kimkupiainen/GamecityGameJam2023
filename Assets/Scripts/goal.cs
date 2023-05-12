@@ -7,6 +7,8 @@ public class goal : MonoBehaviour
 {
     [SerializeField]
     TextMeshProUGUI score1text;
+    [SerializeField]
+    CameraController cmr;
 
     [SerializeField]
     TextMeshProUGUI score2text;
@@ -18,13 +20,12 @@ public class goal : MonoBehaviour
 
     int score1;
     int score2;
+    int maxscore = 3;
     // Start is called before the first frame update
     void Start()
     {
         score1 = 0;
         score2 = 0;
-        
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -45,8 +46,15 @@ public class goal : MonoBehaviour
                 audience.ShakeLeft();
                 prt[1].Play();
             }
-
             BallMaxVelocity ball = collision.GetComponent<BallMaxVelocity>();
+            if (score1 == maxscore)
+            {
+                cmr.DropExtras(1);
+            }
+            if (score2 == maxscore)
+            {
+                cmr.DropExtras(2);
+            }
             if (ball != null) StartCoroutine( ball.LaunchBall(1.5f));
         }
     }
