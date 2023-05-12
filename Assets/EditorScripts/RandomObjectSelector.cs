@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
+#if UNITY_EDITOR
 public class RandomizeModels : EditorWindow
 {
     public string modelsFolder = "Assets/Models";
@@ -33,3 +34,4 @@ public class RandomizeModels : EditorWindow
         }
     }
 }
+#endif
