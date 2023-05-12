@@ -13,9 +13,12 @@ public class CameraController : MonoBehaviour
     public float maxzoom = 30f;
     public float zoomlimiter = 50f;
     private Camera cam;
+    public GameObject go;
+    Transform cameratransform;
     private void Start()
     {
         cam = GetComponent<Camera>();
+        cameratransform = cam.transform;
     }
     void LateUpdate()
     {
