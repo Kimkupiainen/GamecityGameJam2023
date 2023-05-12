@@ -13,6 +13,8 @@ public class goal : MonoBehaviour
 
     [SerializeField]
     AudienceWiggler audience;
+    [SerializeField]
+    ParticleSystem[] prt;
 
     int score1;
     int score2;
@@ -34,12 +36,14 @@ public class goal : MonoBehaviour
                 score2++;
                 score2text.text = score2.ToString();
                 audience.ShakeRight();
+                prt[0].Play();
             }
             else
             {
                 score1++;
                 score1text.text = score1.ToString();
                 audience.ShakeLeft();
+                prt[1].Play();
             }
 
             BallMaxVelocity ball = collision.GetComponent<BallMaxVelocity>();

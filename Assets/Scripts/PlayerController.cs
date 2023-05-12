@@ -43,8 +43,11 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private void Start()
     {
-        currentpad1 = Gamepad.all.Count > 0 ? Gamepad.all[0] : null;
-        currentpad2 = Gamepad.all.Count > 1 ? Gamepad.all[1] : null;
+        if (Gamepad.all.Count > 0)
+        {
+            currentpad1 = Gamepad.all.Count > 0 ? Gamepad.all[0] : null;
+            currentpad2 = Gamepad.all.Count > 1 ? Gamepad.all[1] : null;
+        }
     }
     private void Awake()
     {
@@ -77,17 +80,11 @@ public class PlayerController : MonoBehaviour
     {
         if (playernumber==0)
         {
-            //Debug.Log(currentpad);
-            // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            //float moveInput = Input.GetAxisRaw("Horizontal1");
             float moveInput;
             if (currentpad1 != null)
             {
                 moveInput = currentpad1.leftStick.ReadValue().x;
-                if (currentpad1.aButton.IsPressed())
-                {
-                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
-                }
+
             }
             else
             {
@@ -131,10 +128,6 @@ public class PlayerController : MonoBehaviour
             if (currentpad2 != null)
             {
                 moveInput = currentpad2.leftStick.ReadValue().x;
-                if (currentpad2.aButton.IsPressed())
-                {
-                    velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
-                }
             }
             else
             {
