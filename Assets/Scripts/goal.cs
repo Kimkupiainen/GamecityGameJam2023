@@ -11,9 +11,6 @@ public class goal : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI score2text;
 
-    [SerializeField]
-    GameObject ball;
-
     int score1;
     int score2;
     // Start is called before the first frame update
