@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(CapsuleCollider2D))]
 public class PlayerController : MonoBehaviour
@@ -24,6 +25,13 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 velocity;
 
+    //public InputAction playerControls;
+    public PlayerControls playerControls;
+    private InputAction move;
+    private InputAction move2;
+
+    private InputAction jump;
+ 
     /// <summary>
     /// Set to true when the character intersects a collider beneath
     /// them in the previous frame.
@@ -33,6 +41,20 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         boxCollider = GetComponent<CapsuleCollider2D>();
+        playerControls = new PlayerControls();
+    }
+
+    private void OnEnable()
+    {
+        move = playerControls.Player.Move;
+        move2 = playerControls.Player.Move2;
+        move.Enable();
+    }
+
+    private void OnDisable()
+    {
+        playerControls.Disable();
+        move.Disable();
     }
 
     private void Update()
@@ -40,7 +62,9 @@ public class PlayerController : MonoBehaviour
         if (playernumber == 0)
         {
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            float moveInput = Input.GetAxisRaw("Horizontal1");
+            //float moveInput = Input.GetAxisRaw("Horizontal1");
+
+            float moveInput = move.ReadValue<Vector2>().x;
 
             if (grounded)
             {
@@ -67,14 +91,15 @@ public class PlayerController : MonoBehaviour
 
             velocity.y += Physics2D.gravity.y * Time.deltaTime;
 
-            transform.Translate(velocity * Time.deltaTime);
+            //transform.Translate(velocity * Time.deltaTime);
 
             grounded = false;
         }
         if (playernumber == 1)
         {
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
-            float moveInput = Input.GetAxisRaw("Horizontal2");
+            //float moveInput = Input.GetAxisRaw("Horizontal2");
+            float moveInput = move2.ReadValue<Vector2>().x;
 
             if (grounded)
             {
@@ -98,10 +123,11 @@ public class PlayerController : MonoBehaviour
             {
                 velocity.x = Mathf.MoveTowards(velocity.x, 0, deceleration * Time.deltaTime);
             }
+            
 
             velocity.y += Physics2D.gravity.y * Time.deltaTime;
 
-            transform.Translate(velocity * Time.deltaTime);
+            //transform.Translate(velocity * Time.deltaTime);
 
             grounded = false;
         }
@@ -132,5 +158,10 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void FixedUpdate()
+    {
+        transform.Translate(velocity * Time.deltaTime);
     }
 }
