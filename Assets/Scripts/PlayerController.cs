@@ -43,20 +43,8 @@ public class PlayerController : MonoBehaviour
     private bool grounded;
     private void Start()
     {
-        int index = 0;
-        foreach (var i in Gamepad.all)
-        {
-            if (index == 0)
-            {
-                currentpad1 = i;
-                index++;
-            }
-            else
-            {
-                currentpad2 = i;
-            }
-        }
-
+        currentpad1 = Gamepad.all.Count > 0 ? Gamepad.all[0] : null;
+        currentpad2 = Gamepad.all.Count > 1 ? Gamepad.all[1] : null;
     }
     private void Awake()
     {
