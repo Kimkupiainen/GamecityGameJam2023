@@ -11,9 +11,12 @@ public class BallMaxVelocity : MonoBehaviour
     public ParticleSystem prt;
     private AudioSource ads;
     public AudioClip[] audioClips;
+
+    public Vector3 startposition;
     // Start is called before the first frame update
     void Start()
     {
+        startposition = transform.position;
         rb = GetComponent<Rigidbody2D>();
         LaunchBall();
         ads = this.gameObject.GetComponent<AudioSource>();
@@ -39,8 +42,10 @@ public class BallMaxVelocity : MonoBehaviour
         }
         rb.velocity *= velocityDamping;
     }
-    private void LaunchBall()
+    public void LaunchBall()
     {
+        transform.position = startposition;
+        rb.velocity = Vector2.zero;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         float angle = Vector2.Angle(Vector2.up, randomDirection);
 
