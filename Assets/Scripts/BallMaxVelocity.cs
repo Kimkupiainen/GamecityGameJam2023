@@ -49,16 +49,23 @@ public class BallMaxVelocity : MonoBehaviour
         rb.simulated = false;
         yield return new WaitForSeconds(delay);
         rb.simulated = true;
-        Vector2 randomDirection = Random.insideUnitCircle.normalized;
-        float angle = Vector2.Angle(Vector2.up, randomDirection);
+        //Vector2 randomDirection = Random.insideUnitCircle.normalized;
+        //float angle = Vector2.Angle(Vector2.up, randomDirection);
 
-        if (angle < 110f)
-        {
-            randomDirection = Quaternion.Euler(0f, 0f, 110f) * Vector2.up;
-        }
+        float angle = Random.Range(-15, 15);
 
-        Vector2 launchVelocity = randomDirection * launchForce;
+        Vector2 randomDirection = new Vector2(Mathf.Sin(angle), -Mathf.Cos(angle)).normalized;
 
-        rb.velocity = -launchVelocity;
+        print(angle);
+
+        print(randomDirection);
+        //if (angle < 110f)
+        //{
+        //    randomDirection = Quaternion.Euler(0f, 0f, 110f) * Vector2.up;
+        //}
+
+        //Vector2 launchVelocity = randomDirection * launchForce;
+
+        rb.velocity = randomDirection * launchForce;
     }
 }
