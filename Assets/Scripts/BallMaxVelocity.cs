@@ -9,11 +9,14 @@ public class BallMaxVelocity : MonoBehaviour
     public float velocityDamping = 0.95f;
     public float gravityScale = 1f;
     public ParticleSystem prt;
+    private AudioSource ads;
+    public AudioClip[] audioClips;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         LaunchBall();
+        ads = this.gameObject.GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,8 @@ public class BallMaxVelocity : MonoBehaviour
 
             rb.velocity = launchVelocity;
             prt.Play();
+            ads.PlayOneShot(audioClips[Random.Range(0, audioClips.Length)]);
+            
         }
         rb.velocity *= velocityDamping;
     }
