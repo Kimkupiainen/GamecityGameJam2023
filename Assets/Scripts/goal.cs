@@ -11,6 +11,9 @@ public class goal : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI score2text;
 
+    [SerializeField]
+    GameObject ball;
+
     int score1;
     int score2;
     // Start is called before the first frame update
@@ -18,7 +21,7 @@ public class goal : MonoBehaviour
     {
         score1 = 0;
         score2 = 0;
-
+        
         
     }
 
@@ -36,6 +39,15 @@ public class goal : MonoBehaviour
                 score1++;
                 score1text.text = score1.ToString();
             }
+
+            BallMaxVelocity ball = collision.GetComponent<BallMaxVelocity>();
+            if (ball != null) StartCoroutine(GoalDelay(ball));
         }
+    }
+
+    IEnumerator GoalDelay(BallMaxVelocity ballen)
+    {
+        yield return new WaitForSecondsRealtime(1.5f);
+        ballen.LaunchBall();
     }
 }
