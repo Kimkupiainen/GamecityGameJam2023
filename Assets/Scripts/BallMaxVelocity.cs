@@ -18,7 +18,7 @@ public class BallMaxVelocity : MonoBehaviour
     {
         startposition = transform.position;
         rb = GetComponent<Rigidbody2D>();
-        LaunchBall();
+        StartCoroutine( LaunchBall(1f));
         ads = this.gameObject.GetComponent<AudioSource>();
     }
 
@@ -42,10 +42,13 @@ public class BallMaxVelocity : MonoBehaviour
         }
         rb.velocity *= velocityDamping;
     }
-    public void LaunchBall()
+    public IEnumerator LaunchBall(float delay)
     {
         transform.position = startposition;
         rb.velocity = Vector2.zero;
+        rb.simulated = false;
+        yield return new WaitForSeconds(delay);
+        rb.simulated = true;
         Vector2 randomDirection = Random.insideUnitCircle.normalized;
         float angle = Vector2.Angle(Vector2.up, randomDirection);
 

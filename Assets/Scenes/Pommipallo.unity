@@ -1507,6 +1507,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &757028937 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6998854740268808730, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &793211301
 GameObject:
   m_ObjectHideFlags: 0
@@ -2090,6 +2095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
   score2text: {fileID: 151939573}
+  audience: {fileID: 1251493466}
 --- !u!4 &1075180243
 Transform:
   m_ObjectHideFlags: 0
@@ -2313,6 +2319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score1text: {fileID: 1463314874}
   score2text: {fileID: 151939573}
+  audience: {fileID: 1251493466}
 --- !u!4 &1122775410
 Transform:
   m_ObjectHideFlags: 0
@@ -2328,6 +2335,28 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1251493464 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8070077950538367481, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1251493466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1251493464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5465b2407348e5741bd8f775f603d55a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeAmount: 1
+  shakeDuration: 0.5
+  shakeSound: {fileID: 8300000, guid: bceb8981df0f44c4498aa5154683113a, type: 3}
+  leftSide: {fileID: 757028937}
+  rightSide: {fileID: 1475057668}
 --- !u!1 &1297339469
 GameObject:
   m_ObjectHideFlags: 0
@@ -2804,6 +2833,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: -180}
+--- !u!1 &1475057668 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2017711107302820287, guid: f6efe2e122fbbf34da18770151c241d1, type: 3}
+  m_PrefabInstance: {fileID: 1564425590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1564425590
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6072,7 +6106,7 @@ GameObject:
   - component: {fileID: 1734445974}
   m_Layer: 6
   m_Name: sphere
-  m_TagString: Untagged
+  m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

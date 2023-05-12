@@ -40,6 +40,24 @@ public class AudienceWiggler : MonoBehaviour
         }
     }
 
+    public void ShakeLeft()
+    {
+        StartCoroutine(ShakeCoroutine(leftSide));
+        if (shakeSound != null)
+        {
+            AudioSource.PlayClipAtPoint(shakeSound, leftSide.transform.position);
+        }
+    }
+
+    public void ShakeRight()
+    {
+        StartCoroutine(ShakeCoroutine(rightSide));
+        if (shakeSound != null)
+        {
+            AudioSource.PlayClipAtPoint(shakeSound, rightSide.transform.position);
+        }
+    }
+
     private IEnumerator ShakeCoroutine(GameObject obj)
     {
         Vector3 originalPosition = obj.transform.position;
