@@ -2503,7 +2503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5465b2407348e5741bd8f775f603d55a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shakeAmount: 0.1
+  shakeAmount: 1
   shakeDuration: 0.5
   shakeSound: {fileID: 8300000, guid: bceb8981df0f44c4498aa5154683113a, type: 3}
   leftSide: {fileID: 979045336}
@@ -6419,7 +6419,7 @@ GameObject:
   - component: {fileID: 1734445974}
   m_Layer: 6
   m_Name: sphere
-  m_TagString: Untagged
+  m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
