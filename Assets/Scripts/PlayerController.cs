@@ -29,15 +29,35 @@ public class PlayerController : MonoBehaviour
     public PlayerControls playerControls;
     private InputAction move;
     private InputAction move2;
+    Gamepad currentpad1;
+    Gamepad currentpad2;
 
     private InputAction jump;
- 
+    private InputAction jump2;
+    
+
     /// <summary>
     /// Set to true when the character intersects a collider beneath
     /// them in the previous frame.
     /// </summary>
     private bool grounded;
+    private void Start()
+    {
+        int index = 0;
+        foreach (var i in Gamepad.all)
+        {
+            if (index == 0)
+            {
+                currentpad1 = i;
+                index++;
+            }
+            else
+            {
+                currentpad2 = i;
+            }
+        }
 
+    }
     private void Awake()
     {
         boxCollider = GetComponent<CapsuleCollider2D>();
@@ -47,30 +67,39 @@ public class PlayerController : MonoBehaviour
     private void OnEnable()
     {
         move = playerControls.Player.Move;
-        move2 = playerControls.Player.Move2;
+        jump = playerControls.Player.Jump;
         move.Enable();
+        jump.Enable();
     }
 
     private void OnDisable()
     {
         playerControls.Disable();
         move.Disable();
+        jump.Disable();
     }
 
     private void Update()
     {
-        if (playernumber == 0)
+        if (playernumber==0)
         {
+            //Debug.Log(currentpad);
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
             //float moveInput = Input.GetAxisRaw("Horizontal1");
-
-            float moveInput = move.ReadValue<Vector2>().x;
+            float moveInput;
+            if (currentpad1 != null)
+            {
+                moveInput = currentpad1.leftStick.ReadValue().x;
+            }
+            else
+            {
+                moveInput = move.ReadValue<Vector2>().x;
+            }
 
             if (grounded)
             {
                 velocity.y = 0;
-
-                if (Input.GetButtonDown("Jump1"))
+                if (jump.IsPressed()||currentpad1.aButton.IsPressed())
                 {
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
@@ -97,15 +126,23 @@ public class PlayerController : MonoBehaviour
         }
         if (playernumber == 1)
         {
+            float moveInput;
+            if (currentpad2 != null)
+            {
+                moveInput = currentpad2.leftStick.ReadValue().x;
+            }
+            else
+            {
+                moveInput = move.ReadValue<Vector2>().x;
+            }
             // Use GetAxisRaw to ensure our input is either 0, 1 or -1.
             //float moveInput = Input.GetAxisRaw("Horizontal2");
-            float moveInput = move2.ReadValue<Vector2>().x;
 
             if (grounded)
             {
                 velocity.y = 0;
 
-                if (Input.GetButtonDown("Jump2"))
+                if (jump.IsPressed()||currentpad2.aButton.IsPressed())
                 {
                     // Calculate the velocity required to achieve the target jump height.
                     velocity.y = Mathf.Sqrt(2 * jumpHeight * Mathf.Abs(Physics2D.gravity.y));
