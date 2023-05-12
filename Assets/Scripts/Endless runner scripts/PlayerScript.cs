@@ -25,6 +25,7 @@ public class PlayerScript : MonoBehaviour
 
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI WinText;
+    public TextMeshProUGUI LoseText;
 
     [Header("Movement")]
     // public float moveInputX;
@@ -44,6 +45,7 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         WinText.gameObject.SetActive(false);
+        LoseText.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
         score = 0;
     }
@@ -130,17 +132,7 @@ public class PlayerScript : MonoBehaviour
             {
                 IsGrounded = true;
             }
-        }
-        if (collision.gameObject.CompareTag("mörkö"))
-        {
-            Destroy(gameObject);
-            Time.timeScale = 0;
-        }
-        if (collision.gameObject.CompareTag("Winnn"))
-        {
-            WinText.gameObject.SetActive(true);
-            Time.timeScale = 0;
-        }
+        }  
     }
 
     private void OnTriggerEnter(Collider other)
@@ -161,6 +153,16 @@ public class PlayerScript : MonoBehaviour
         {
             scoreMultiplier = 2.0f;
         }
-
+        if (other.gameObject.CompareTag("mörkö"))
+        {
+            LoseText.gameObject.SetActive(true);
+            Time.timeScale = 0;
+            Destroy(gameObject);
+        }
+        if (other.gameObject.CompareTag("Winnn"))
+        {
+            WinText.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 }
