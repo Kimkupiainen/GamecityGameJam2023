@@ -8,6 +8,7 @@ public class BallMaxVelocity : MonoBehaviour
     public float launchForce = 10f;    
     public float velocityDamping = 0.95f;
     public float gravityScale = 1f;
+    public ParticleSystem prt;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class BallMaxVelocity : MonoBehaviour
             Vector2 launchVelocity = direction * launchForce;
 
             rb.velocity = launchVelocity;
+            prt.Play();
         }
         rb.velocity *= velocityDamping;
     }
