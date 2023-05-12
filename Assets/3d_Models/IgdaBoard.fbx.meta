@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: ab3072c9f130f994db0c6667544aae71
+guid: 5a143380a5364d44c8cb1cad9a5007b7
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cardboard
-    second: {fileID: 2100000, guid: 181fad306ba27a94f855c46f76e8b065, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -18,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: CardboardSide
-    second: {fileID: 2800000, guid: 133ecc43529e60c4cb7418085ddb9405, type: 3}
+    second: {fileID: 2800000, guid: d9e6291ede356a540b232f79aea7a369, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Puu
-    second: {fileID: 2800000, guid: 6d1ab0f896dc4ec468f100449569d25f, type: 3}
+      name: igda_black
+    second: {fileID: 2800000, guid: db6f9af743db98045b3a99e496ff375b, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0

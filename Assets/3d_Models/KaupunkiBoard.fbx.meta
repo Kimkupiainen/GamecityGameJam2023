@@ -1,14 +1,9 @@
 fileFormatVersion: 2
-guid: ab3072c9f130f994db0c6667544aae71
+guid: 54c6399b4a3493a488a6d75de3834e1f
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
   externalObjects:
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Cardboard
-    second: {fileID: 2100000, guid: 181fad306ba27a94f855c46f76e8b065, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -18,12 +13,12 @@ ModelImporter:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
       name: CardboardSide
-    second: {fileID: 2800000, guid: 133ecc43529e60c4cb7418085ddb9405, type: 3}
+    second: {fileID: 2800000, guid: bc0a0d5ae3962ab41b5121d4ebd93b51, type: 3}
   - first:
       type: UnityEngine:Texture2D
       assembly: UnityEngine.CoreModule
-      name: Puu
-    second: {fileID: 2800000, guid: 6d1ab0f896dc4ec468f100449569d25f, type: 3}
+      name: kajaani-logo
+    second: {fileID: 2800000, guid: 5083da1333612ba4f8377fb68f2308a8, type: 3}
   materials:
     materialImportMode: 2
     materialName: 0
