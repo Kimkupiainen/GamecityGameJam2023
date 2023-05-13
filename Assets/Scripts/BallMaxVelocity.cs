@@ -14,6 +14,8 @@ public class BallMaxVelocity : MonoBehaviour
     public TrailRenderer trail;
 
     public Vector3 startposition;
+
+    public float angleDeviation;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,7 +57,7 @@ public class BallMaxVelocity : MonoBehaviour
         //Vector2 randomDirection = Random.insideUnitCircle.normalized;
         //float angle = Vector2.Angle(Vector2.up, randomDirection);
 
-        float angle = Random.Range(-15, 15);
+        float angle = Random.Range(180 - angleDeviation, 180 + angleDeviation) * Mathf.Deg2Rad;
 
         Vector2 randomDirection = new Vector2(Mathf.Sin(angle), -Mathf.Cos(angle)).normalized;
 
