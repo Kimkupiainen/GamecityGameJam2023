@@ -3,7 +3,17 @@ guid: 63275b4d9b0b3fc40ae09a64ea6e1354
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CardboardSide
+    second: {fileID: 2100000, guid: 41dcc2b976a25f04584dfe9795431b0f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cardboard-wallpaper-template
+    second: {fileID: 2100000, guid: 181fad306ba27a94f855c46f76e8b065, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

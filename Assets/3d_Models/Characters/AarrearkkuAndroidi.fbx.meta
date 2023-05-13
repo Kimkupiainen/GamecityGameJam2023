@@ -7,7 +7,7 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
-      name: AarrearkkuAndroidi
+      name: CardboardSide
     second: {fileID: 2100000, guid: 41dcc2b976a25f04584dfe9795431b0f, type: 2}
   - first:
       type: UnityEngine:Material
