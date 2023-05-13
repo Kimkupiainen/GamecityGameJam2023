@@ -1,9 +1,19 @@
 fileFormatVersion: 2
-guid: 9c672bc0737dd4644b9e53b52a8ca6ad
+guid: 6269db60e23b79c499765a5c61d9a1a0
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CardboardSide
+    second: {fileID: -3671529089270998879, guid: 576fbb22b9b090143b7be0b373e61574, type: 3}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Material.003
+    second: {fileID: 2100000, guid: 181fad306ba27a94f855c46f76e8b065, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
