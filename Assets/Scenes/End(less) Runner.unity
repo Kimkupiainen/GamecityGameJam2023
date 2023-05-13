@@ -1660,7 +1660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641304ac7cd93dc4d8e49e3dc399d93e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0.4
 --- !u!65 &729709581
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2757,6 +2757,7 @@ MonoBehaviour:
   speedMultiplier: 0.0015
   minDelay: 0.4
   maxDelay: 2
+  spikeThreshold: 30
 --- !u!1 &1068880010
 GameObject:
   m_ObjectHideFlags: 0
@@ -6752,7 +6753,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: d405f0b83e1df3146883dc6d15560737, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7617,6 +7618,7 @@ MonoBehaviour:
   speedMultiplier: 0.0015
   minDelay: 0.4
   maxDelay: 2
+  spikeThreshold: 30
 --- !u!1001 &1772822054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8764,6 +8766,7 @@ MonoBehaviour:
   speedMultiplier: 0.0015
   minDelay: 0.4
   maxDelay: 2
+  spikeThreshold: 30
 --- !u!1 &2139784170
 GameObject:
   m_ObjectHideFlags: 0

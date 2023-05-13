@@ -39,7 +39,6 @@ public class PlayerScript : MonoBehaviour
     {
         src=GetComponent<AudioSource>();
         cr=GetComponent<CharacterController>();
-        winLine = GameObject.Find("WinLine").GetComponent<WinLineScript>();
     }
     private void Start()
     {
@@ -87,7 +86,7 @@ public class PlayerScript : MonoBehaviour
             winLine.gameObject.SetActive(true);
         }
 
-        if (IsAlive)
+        if (IsAlive&&!wongame)
         {
             score += Time.deltaTime * scoreMultiplier;
             int scr = (int)score;
@@ -118,28 +117,32 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.CompareTag("lineOne"))
+        if (IsAlive && !wongame)
         {
-            scoreMultiplier = 2.5f;
+            if (other.gameObject.CompareTag("lineOne"))
+            {
+                scoreMultiplier = 2.5f;
+            }
+            else if (other.gameObject.CompareTag("lineTwo"))
+            {
+                scoreMultiplier = 3f;
+            }
+            else if (other.gameObject.CompareTag("lineThree"))
+            {
+                scoreMultiplier = 4.5f;
+            }
+            else if (other.gameObject.CompareTag("lineFour"))
+            {
+                scoreMultiplier = 7f;
+            }
+            else
+            {
+                scoreMultiplier = 2;
+            }
         }
-        else if (other.gameObject.CompareTag("lineTwo"))
-        {
-            scoreMultiplier = 3f;
-        }
-        else if (other.gameObject.CompareTag("lineThree"))
-        {
-            scoreMultiplier = 4.5f;
-        }
-        else if (other.gameObject.CompareTag("lineFour"))
-        {
-            scoreMultiplier = 7f;
-        }
-        else
-        {
-            scoreMultiplier = 2;
-        }
+
         if (other.gameObject.CompareTag("mörkö")&&!wongame)
         {
             endscore = score;

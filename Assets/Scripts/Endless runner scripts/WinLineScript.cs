@@ -5,10 +5,7 @@ using UnityEngine;
 public class WinLineScript : MonoBehaviour
 {
     public float speed;
-    private void Start()
-    {
-        gameObject.SetActive(false);
-    }
+
     private void Update()
     {
         {

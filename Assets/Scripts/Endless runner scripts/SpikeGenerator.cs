@@ -17,10 +17,12 @@ public class SpikeGenerator : MonoBehaviour
     public float minDelay;
     public float maxDelay;
 
-    public int spikeThreshold = 30;
-    private static int totalSpikeCount = 0;
-    private void Awake()
+    public int spikeThreshold = 200;
+    private static int totalSpikeCount;
+    
+    private void Start()
     {
+        totalSpikeCount = 0;
         currentSpeed = minSpeed;
         GenerateSpike();
     }
