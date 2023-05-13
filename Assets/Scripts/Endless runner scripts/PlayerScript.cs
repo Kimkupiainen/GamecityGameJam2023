@@ -5,16 +5,11 @@ using TMPro;
 
 public class PlayerScript : MonoBehaviour
 {
-    [Header("WinLine")]
     public float time;
     public float timeThreshold;
 
     public WinLineScript winLine;
     
-    [Header("Jump")]
-    public float jumpforce;
-
-    public bool IsGrounded = false;
     public bool IsAlive = true;
 
     public Rigidbody rb;
@@ -22,10 +17,13 @@ public class PlayerScript : MonoBehaviour
     [Header("Score")]
     public float score;
     public float scoreMultiplier;
+    public float endscore;
 
     public TextMeshProUGUI ScoreText;
     public TextMeshProUGUI WinText;
     public TextMeshProUGUI LoseText;
+    [SerializeField] AudioClip[] clp;
+    AudioSource src;
 
     [Header("Movement")]
     // public float moveInputX;
@@ -34,39 +32,31 @@ public class PlayerScript : MonoBehaviour
 
     public int desiredLane; //0 = left, 1 = middle, 2 = right
     public float laneDistance = 3f;
-
+    bool wongame;
     CharacterController cr;
 
     private void Awake()
     {
-        cr = GetComponent<CharacterController>();
+        src=GetComponent<AudioSource>();
+        cr=GetComponent<CharacterController>();
         winLine = GameObject.Find("WinLine").GetComponent<WinLineScript>();
     }
     private void Start()
     {
+        wongame = false;
         WinText.gameObject.SetActive(false);
         LoseText.gameObject.SetActive(false);
         rb = GetComponent<Rigidbody>();
         score = 0;
     }
-
-    private void Update()
+    void PlayerMovement()
     {
-        time += Time.deltaTime;
-        if (time > timeThreshold)
-        {
-            winLine.gameObject.SetActive(true);
-        }
-
-
-        //        moveInputX = Input.GetAxisRaw("Horizontal1");
         moveInputZ = Input.GetAxisRaw("Vertical");
-        //rb.velocity = new Vector3(0, rb.velocity.y, moveInputZ * speed);
 
         if (Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A))
         {
             MoveLane(false);
-        } 
+        }
         if (Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
         {
             MoveLane(true);
@@ -83,24 +73,26 @@ public class PlayerScript : MonoBehaviour
         }
 
         Vector3 moveVector = Vector3.zero;
-        moveVector.x = (targetPosition - transform.position).normalized.x * (speed/2);
+        moveVector.x = (targetPosition - transform.position).normalized.x * (speed / 2);
         moveVector.z = moveInputZ;
 
         cr.Move(moveVector * Time.deltaTime * speed);
-        //if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow))
-        //{
-        //    if (IsGrounded == true)
-        //    {
-        //        rb.AddForce(Vector2.up * jumpforce);
-        //        IsGrounded = false;
-        //    }
-        //}
+
+    }
+    private void Update()
+    {
+        time += Time.deltaTime;
+        if (time > timeThreshold)
+        {
+            winLine.gameObject.SetActive(true);
+        }
 
         if (IsAlive)
         {
             score += Time.deltaTime * scoreMultiplier;
             int scr = (int)score;
             ScoreText.text = "Score : " + scr.ToString();
+            PlayerMovement();
         }
     }
 
@@ -126,17 +118,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("ground"))
-        {
-            if (IsGrounded == false)
-            {
-                IsGrounded = true;
-            }
-        }  
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("lineOne"))
@@ -159,16 +140,29 @@ public class PlayerScript : MonoBehaviour
         {
             scoreMultiplier = 2;
         }
-        if (other.gameObject.CompareTag("mörkö"))
+        if (other.gameObject.CompareTag("mörkö")&&!wongame)
         {
+            endscore = score;
+            src.PlayOneShot(clp[Random.Range(0, clp.Length)]);
+            cr.enabled = false;
+            IsAlive = false;
             LoseText.gameObject.SetActive(true);
-            Time.timeScale = 0;
-            Destroy(gameObject);
+            rb.constraints = RigidbodyConstraints.None;
+            rb.isKinematic = false;
+
+            Vector3 explosionPosition = other.transform.position;
+            float explosionRadius = 10f; // Adjust the explosion radius as needed
+            float explosionForce = 500f; // Adjust the explosion force as needed
+
+            rb.AddExplosionForce(explosionForce, explosionPosition, explosionRadius);
+
         }
-        if (other.gameObject.CompareTag("Winnn"))
+        if (other.gameObject.CompareTag("Winnn") && IsAlive)
         {
+            wongame = true;
             WinText.gameObject.SetActive(true);
-            Time.timeScale = 0;
+            cr.enabled = false;
+
         }
     }
 }

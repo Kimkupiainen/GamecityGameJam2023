@@ -17,6 +17,8 @@ public class SpikeGenerator : MonoBehaviour
     public float minDelay;
     public float maxDelay;
 
+    public int spikeThreshold = 30;
+    private static int totalSpikeCount = 0;
     private void Awake()
     {
         currentSpeed = minSpeed;
@@ -30,9 +32,13 @@ public class SpikeGenerator : MonoBehaviour
     }
     private void GenerateSpike()
     {
-        var _spikeInstance = Instantiate(spike, transform.position, transform.rotation);
+        if (totalSpikeCount < spikeThreshold)
+        {
+            var _spikeInstance = Instantiate(spike, transform.position, transform.rotation);
+            _spikeInstance.GetComponent<SpikeScript>().spikeGenerator = this;
 
-        _spikeInstance.GetComponent<SpikeScript>().spikeGenerator = this;
+            totalSpikeCount++;
+        }
     }
 
     private void Update()
@@ -40,12 +46,6 @@ public class SpikeGenerator : MonoBehaviour
         if (currentSpeed < maxSpeed)
         {
             currentSpeed += speedMultiplier;
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 1;
-            SceneManager.LoadScene(2);
         }
     }
 }
