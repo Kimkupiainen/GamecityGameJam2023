@@ -11,6 +11,7 @@ public class BallMaxVelocity : MonoBehaviour
     public ParticleSystem prt;
     private AudioSource ads;
     public AudioClip[] audioClips;
+    public TrailRenderer trail;
 
     public Vector3 startposition;
     // Start is called before the first frame update
@@ -44,7 +45,9 @@ public class BallMaxVelocity : MonoBehaviour
     }
     public IEnumerator LaunchBall(float delay)
     {
+        
         transform.position = startposition;
+        trail.Clear();
         rb.velocity = Vector2.zero;
         rb.simulated = false;
         yield return new WaitForSeconds(delay);
@@ -56,9 +59,7 @@ public class BallMaxVelocity : MonoBehaviour
 
         Vector2 randomDirection = new Vector2(Mathf.Sin(angle), -Mathf.Cos(angle)).normalized;
 
-        print(angle);
 
-        print(randomDirection);
         //if (angle < 110f)
         //{
         //    randomDirection = Quaternion.Euler(0f, 0f, 110f) * Vector2.up;
@@ -68,4 +69,5 @@ public class BallMaxVelocity : MonoBehaviour
 
         rb.velocity = randomDirection * launchForce;
     }
+
 }

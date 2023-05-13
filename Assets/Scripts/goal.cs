@@ -20,10 +20,11 @@ public class goal : MonoBehaviour
     AudienceWiggler audience;
     [SerializeField]
     ParticleSystem[] prt;
+    [SerializeField] ActionReplay actionReplay;
 
     int score1;
     int score2;
-    int maxscore = 1;
+    int maxscore = 3;
     bool gameover;
     // Start is called before the first frame update
     void Start()
