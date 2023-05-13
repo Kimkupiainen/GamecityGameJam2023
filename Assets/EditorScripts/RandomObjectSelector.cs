@@ -25,9 +25,15 @@ public class RandomizeModels : EditorWindow
 
             foreach (GameObject obj in selectedObjects)
             {
+                int childCount = obj.transform.childCount;
+                for (int i = childCount - 1; i >= 0; i--)
+                {
+                    GameObject child = obj.transform.GetChild(i).gameObject;
+                    GameObject.DestroyImmediate(child);
+                }
+
                 string[] modelFiles = Directory.GetFiles(modelsFolder, "*.fbx");
                 string randomModelFile = modelFiles[Random.Range(0, modelFiles.Length)];
-
                 GameObject modelPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(randomModelFile);
                 GameObject modelInstance = GameObject.Instantiate(modelPrefab, obj.transform.position, obj.transform.rotation, obj.transform);
             }
