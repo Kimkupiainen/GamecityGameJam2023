@@ -109,6 +109,7 @@ public class PlayerScript : MonoBehaviour
         if (!goingRight)
         {
             desiredLane--;
+            transform.eulerAngles = new Vector3(0, 180, 0);
             if (desiredLane == -1)
             {
                 desiredLane = 0;
@@ -117,6 +118,7 @@ public class PlayerScript : MonoBehaviour
         else
         {
             desiredLane++;
+            transform.eulerAngles = new Vector3(0, 0, 0);
             if (desiredLane == 3)
             {
                 desiredLane = 2;
@@ -139,19 +141,23 @@ public class PlayerScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("lineOne"))
         {
-            scoreMultiplier = 1.0f;
+            scoreMultiplier = 2.5f;
         }
-        if (other.gameObject.CompareTag("lineTwo"))
+        else if (other.gameObject.CompareTag("lineTwo"))
         {
-            scoreMultiplier = 1.35f;
+            scoreMultiplier = 3f;
         }
-        if (other.gameObject.CompareTag("lineThree"))
+        else if (other.gameObject.CompareTag("lineThree"))
         {
-            scoreMultiplier = 1.55f;
+            scoreMultiplier = 4.5f;
         }
-        if (other.gameObject.CompareTag("lineFour"))
+        else if (other.gameObject.CompareTag("lineFour"))
         {
-            scoreMultiplier = 2.0f;
+            scoreMultiplier = 7f;
+        }
+        else
+        {
+            scoreMultiplier = 2;
         }
         if (other.gameObject.CompareTag("mörkö"))
         {
